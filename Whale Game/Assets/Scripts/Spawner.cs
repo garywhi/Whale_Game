@@ -5,12 +5,15 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject[] spawns;
-    public Transform spawnpoint;
+    public Transform[] spawnPoint;
 
     private int rand;
+    private int randPosition;
 
     public float startTimeBtwSpawns;
     private float timeBtwSpawns;
+
+    
 
     private void Start()
     {
@@ -22,7 +25,8 @@ public class Spawner : MonoBehaviour
         if (timeBtwSpawns <= 0)
         {
             rand = Random.Range(0, spawns.Length);
-            Instantiate(spawns[rand], spawnpoint.transform.position, Quaternion.identity);
+            randPosition = Random.Range(0, spawnPoint.Length);
+            Instantiate(spawns[rand], spawnPoint[randPosition].transform.position, Quaternion.identity);
             timeBtwSpawns = startTimeBtwSpawns;
         }
         else
