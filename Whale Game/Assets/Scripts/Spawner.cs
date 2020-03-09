@@ -14,9 +14,20 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
+        timeBtwSpawns = startTimeBtwSpawns;
+    }
+
+    private void Update()
+    {
         if (timeBtwSpawns <= 0)
         {
-            Instantiate(spawns[0], spawnpoint.transform.position, Quaternion.identity);
+            rand = Random.Range(0, spawns.Length);
+            Instantiate(spawns[rand], spawnpoint.transform.position, Quaternion.identity);
+            timeBtwSpawns = startTimeBtwSpawns;
+        }
+        else
+        {
+            timeBtwSpawns -= Time.deltaTime;
         }
     }
 }
